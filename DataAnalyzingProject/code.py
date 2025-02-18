@@ -115,7 +115,12 @@ def check_second_section():
     if (get_user_choice_for_section == "section two" or get_user_choice_for_section == "section 2" or get_user_choice_for_section == "Section 2" or get_user_choice_for_section == "Section Two"): 
         section_2()
 
-    
+
+
+#have to call the check_first_section function and check_second_section / these two functions definetely kind of start it off to launch the whole program. 
+check_first_section() 
+check_second_section()
+
 
 def section_1():  
     #going to display content for the general overview of data including mean null values etc. 
@@ -176,16 +181,21 @@ def option_1(): #function to define the operation to get the data.
         print("Heres the first 5 rows of the data:") 
         print('\n')
         dataFrame.head() #this will give the first 5 rows to view. 
+        print(dataFrame.to_string())
+        
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
         print("Heres the first 5 rows of the data:")
         print('\n')
         dataFrame.head()  
+        print(dataFrame.to_string())
+        
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
         print("Heres the first 5 rows of the data:")
         print('\n')
-        dataFrame.head()
+        dataFrame.head() 
+        print(dataFrame.to_string())
         
 
 def option_2(): 
@@ -205,10 +215,8 @@ def section_2():
     #section 2 is basically the same as section 1
     pass 
 
-#have to call the check_first_section function and check_second_section / these two functions definetely kind of start it off to launch the whole program. 
-check_first_section() 
-check_second_section()
-        
+
+
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
