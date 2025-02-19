@@ -1,7 +1,7 @@
 #Libraries imported: Speech_recognition library. 
 import speech_recognition as sr 
 #import pandas library 
-import pandas as pd
+import pandas as pd #used for data manipulation and cleaning data. 
 
 #Initialize the recognizer class (for recognizing the speech) 
 
@@ -201,18 +201,76 @@ def option_1(): #function to define the operation to get the data.
 def option_2(): 
     #option 2 talks about showing the last few rows of the data Frame 
     #same idea we have to check wether we are in the right file type for the data to be analyzed. 
-    pass
+    if (file_type.endswith(".csv")): #here im saying that 
+        dataFrame = pd.read_csv(file_type) 
+        print("Heres the last 5 rows of the data:") 
+        print('\n')
+        dataFrame.tail() #this will give the first 5 rows to view. 
+        print(dataFrame.to_string())
+        
+    elif (file_type.endswith(".xlsx")): 
+        dataFrame = pd.read_excel(file_type) # reading excel file type here. 
+        print("Heres the last 5 rows of the data:")
+        print('\n')
+        dataFrame.tail()  
+        print(dataFrame.to_string())
+        
+    elif(file_type.endswith(".xls")): 
+        dataFrame = pd.read_excel(file_type) 
+        print("Heres the last 5 rows of the data:")
+        print('\n')
+        dataFrame.tail() 
+        print(dataFrame.to_string())
     
 def option_3(): 
-    pass
+    #showing the general percentile and mean median of the data set that is inputed in the enter file area. 
+    if (file_type.endswith(".csv")):
+        dataFrame = pd.read_csv(file_type)  
+        print("Here is the general trend of the data such as percentile, mean, mode, median and more !") 
+        print('\n')
+        dataFrame.describe() 
+        print(dataFrame.to_string())
+        
+    elif (file_type.endswith(".xlsx")): 
+        dataFrame = pd.read_excel(file_type) # reading excel file type here. 
+        print("Here is the general trend of the data such as percentile, mean, mode, median and more !")
+        print('\n')
+        dataFrame.describe()
+        print(dataFrame.to_string())
+        
+    elif(file_type.endswith(".xls")): 
+        dataFrame = pd.read_excel(file_type) 
+        print("Here is the general trend of the data such as percentile, mean, mode, median and more !")
+        print('\n')
+        dataFrame.describe() 
+        print(dataFrame.to_string())
     
 def option_4(): 
-    pass
+    if (file_type.endswith(".csv")):
+        dataFrame = pd.read_csv(file_type)  
+        print("Here is the missing values present in the data set") 
+        print('\n')
+        dataFrame.isnull().sum()
+        print(dataFrame.to_string())
+        
+    elif (file_type.endswith(".xlsx")): 
+        dataFrame = pd.read_excel(file_type) # reading excel file type here. 
+        print("Here is the missing values present in the data set")
+        print('\n')
+        dataFrame.isnull().sum()
+        print(dataFrame.to_string())
+        
+    elif(file_type.endswith(".xls")): 
+        dataFrame = pd.read_excel(file_type) 
+        print("Here is the missing values present in the data set")
+        print('\n')
+        dataFrame.isnull().sum()
+        print(dataFrame.to_string())
 
 
 def section_2():  
     #going to display content for the second part of the data for more of cleaning and manipulating data.  
-    #section 2 is basically the same as section 1
+    #section 2 is basically the same as section 1 so alot more implementation 
     pass 
 
 
