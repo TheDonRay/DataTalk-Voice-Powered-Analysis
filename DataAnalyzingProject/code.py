@@ -102,8 +102,6 @@ def get_user_speech(): #this function just helps
 #calling the get speech function and setting it to the variable get_user_choice_for_section 
 get_user_choice_for_section = get_user_speech() #note that we can make multiple calls to the same function to check something just remember to assign different variables to the function. 
 
-
-
 #now we have to create a checker where if section 1 is chosen we go into the options 
 
 def check_first_section(): 
@@ -132,7 +130,8 @@ def section_1():
     option1 = "1.) Show first 5 Rows to view in Data Frame" #head function
     option2 = "2.) Show last few rows to view in Data Frame" #tail function
     option3 = "3.) Show general trend of the data such as percentile, mean, median etc" #describe function
-    option4 = "4.) Show missing null values in the Data Set" #issumnull.na function. 
+    option4 = "4.) Show missing null values in the Data Set" #issumnull.na function.  
+
     
     print(option1 ,'\n', option2, '\n', option3, '\n', option4, '\n') 
     print("Please choose an option !")
@@ -181,21 +180,21 @@ def option_1(): #function to define the operation to get the data.
         print("Heres the first 5 rows of the data:") 
         print('\n')
         dataFrame.head() #this will give the first 5 rows to view. 
-        print(dataFrame.to_string())
+        print(dataFrame.head())
         
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
         print("Heres the first 5 rows of the data:")
         print('\n')
         dataFrame.head()  
-        print(dataFrame.to_string())
+        print(dataFrame.head())
         
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
         print("Heres the first 5 rows of the data:")
         print('\n')
         dataFrame.head() 
-        print(dataFrame.to_string())
+        print(dataFrame.head())
         
 
 def option_2(): 
@@ -206,21 +205,24 @@ def option_2():
         print("Heres the last 5 rows of the data:") 
         print('\n')
         dataFrame.tail() #this will give the first 5 rows to view. 
-        print(dataFrame.to_string())
+        print(dataFrame.tail())
+        
         
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
         print("Heres the last 5 rows of the data:")
         print('\n')
         dataFrame.tail()  
-        print(dataFrame.to_string())
+        print(dataFrame.tail())
+       
         
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
         print("Heres the last 5 rows of the data:")
         print('\n')
         dataFrame.tail() 
-        print(dataFrame.to_string())
+        print(dataFrame.tail())
+
     
 def option_3(): 
     #showing the general percentile and mean median of the data set that is inputed in the enter file area. 
@@ -228,22 +230,22 @@ def option_3():
         dataFrame = pd.read_csv(file_type)  
         print("Here is the general trend of the data such as percentile, mean, mode, median and more !") 
         print('\n')
-        dataFrame.describe() 
-        print(dataFrame.to_string())
+        dataFrame.describe()
+        print(dataFrame.describe())
         
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
         print("Here is the general trend of the data such as percentile, mean, mode, median and more !")
         print('\n')
         dataFrame.describe()
-        print(dataFrame.to_string())
+        print(dataFrame.describe())
         
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
         print("Here is the general trend of the data such as percentile, mean, mode, median and more !")
         print('\n')
-        dataFrame.describe() 
-        print(dataFrame.to_string())
+        dataFrame.describe()
+        print(dataFrame.describe())
     
 def option_4(): 
     if (file_type.endswith(".csv")):
@@ -251,21 +253,21 @@ def option_4():
         print("Here is the missing values present in the data set") 
         print('\n')
         dataFrame.isnull().sum()
-        print(dataFrame.to_string())
+        print(dataFrame.isnull().sum())
         
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
         print("Here is the missing values present in the data set")
         print('\n')
         dataFrame.isnull().sum()
-        print(dataFrame.to_string())
+        print(dataFrame.isnull().sum())
         
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
         print("Here is the missing values present in the data set")
         print('\n')
         dataFrame.isnull().sum()
-        print(dataFrame.to_string())
+        print(dataFrame.isnull().sum())
 
 
 def section_2():  
