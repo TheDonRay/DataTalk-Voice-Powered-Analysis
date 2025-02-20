@@ -273,12 +273,35 @@ def option_4():
 def section_2():  
     #going to display content for the second part of the data for more of cleaning and manipulating data.  
     #section 2 is basically the same as section 1 so alot more implementation 
+    Sectiontwo_welcome_text = "Welcome to Section 2. This is where you can clean your data"
+    print(Sectiontwo_welcome_text) 
+    print('\n') 
+    
+    #list of options still have to decide on which options to add  
+    
+    
+    
+    #choose_option_ = get_user_choice_for_section() #calling this function to get the mic for users input notice looks the same but i added _
+ 
+ 
+    #make a list of the valid options for each type given.  
+    
+    
+    
+    #while loop to keep asking user for input  
+    
+    
+    
+    
+    #if statement to check each option in that list index is equal to that in the list. we can seperate it as this [option 1 etc.. ]
+
+
+#functions to call the data manipulation. 
+def section2_option1(): 
     pass 
 
-
-
-#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+def section2_option2(): 
+    pass 
 
 
 
