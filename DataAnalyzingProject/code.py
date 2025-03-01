@@ -83,6 +83,7 @@ def get_user_speech(): #this function just helps
 
     with sr.Microphone() as source: # this with statement what it basically does is that it ensures the resources are properly acquired and released, here it manages the Microphone resource. Then the sr.Microphone creates an instance of a microphone object that is used to capture audio input. 
         print("Calibrating to your background noise to hear you clearly...")
+        print('\n')
         recognizer.adjust_for_ambient_noise(source, duration=2)  # Calibrates noise level
         print("Listening...")
         #create variable to hold for listening to user speech. 
@@ -91,6 +92,7 @@ def get_user_speech(): #this function just helps
             audio_text = recognizer.listen(source, timeout = 15) #the timeout value is basically the max number of seconds to wait for speech to start. Phrase time limit is the maximum duration to capture audio after user stops speaking. 
 
             print("Done listening. Transforming data")
+            print('\n')
 
             user_input = recognizer.recognize_google(audio_text) #recognize the users voice and what they said. 
             #using google speech recognition 
@@ -105,7 +107,9 @@ def get_user_speech(): #this function just helps
 #calling the get speech function and setting it to the variable get_user_choice_for_section 
 get_user_choice_for_section = get_user_speech() #note that we can make multiple calls to the same function to check something just remember to assign different variables to the function. 
 
-#predefining the sections here for the function. Since it was calling it undefined
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#predefining the sections here for the function. 
 
 def section_1():  
     #going to display content for the general overview of data including mean null values etc. 
@@ -136,7 +140,7 @@ def section_1():
     #implement while loop for user to keep asking if they want another other options. 
     i = choose_option
     while(i not in valid_options): #same as saying check if what the user said if thats not matching up with the things in the list then ask them to try again. 
-        print("Please choose a valid option !") 
+        print("Please choose a valid option!") 
         choose_option = get_user_speech()
 
     #if statement to check each option in that list index is equal to that sub list. - left of here. this is gonna be a if else statement calling each of the functions.  
@@ -198,6 +202,8 @@ def option_1(): #function to define the operation to get the data.
         print('\n')
         dataFrame.head() #this will give the first 5 rows to view. 
         print(dataFrame.head())
+        print('\n')
+        switch_option() # calling the switch functiion here 
         
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
@@ -205,6 +211,8 @@ def option_1(): #function to define the operation to get the data.
         print('\n')
         dataFrame.head()  
         print(dataFrame.head())
+        print('\n')
+        switch_option() # calling the switch function here
         
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
@@ -212,7 +220,8 @@ def option_1(): #function to define the operation to get the data.
         print('\n')
         dataFrame.head() 
         print(dataFrame.head())
-        
+        print('\n')
+        switch_option() #callling switch function here. 
 
 def option_2(): 
     #option 2 talks about showing the last few rows of the data Frame 
@@ -223,6 +232,8 @@ def option_2():
         print('\n')
         dataFrame.tail() #this will give the first 5 rows to view. 
         print(dataFrame.tail())
+        print('\n')
+        switch_option() #callling switch function here. 
         
         
     elif (file_type.endswith(".xlsx")): 
@@ -231,6 +242,8 @@ def option_2():
         print('\n')
         dataFrame.tail()  
         print(dataFrame.tail())
+        print('\n')
+        switch_option() #callling switch function here. 
        
         
     elif(file_type.endswith(".xls")): 
@@ -239,6 +252,8 @@ def option_2():
         print('\n')
         dataFrame.tail() 
         print(dataFrame.tail())
+        print('\n')
+        switch_option() #callling switch function here. 
 
     
 def option_3(): 
@@ -248,7 +263,10 @@ def option_3():
         print("Here is the general trend of the data such as percentile, mean, mode, median and more !") 
         print('\n')
         dataFrame.describe()
-        print(dataFrame.describe())
+        print(dataFrame.describe()) 
+        print('\n')
+        switch_option() #callling switch function here. 
+      
         
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
@@ -256,6 +274,8 @@ def option_3():
         print('\n')
         dataFrame.describe()
         print(dataFrame.describe())
+        print('\n')
+        switch_option() #callling switch function here. 
         
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
@@ -263,6 +283,8 @@ def option_3():
         print('\n')
         dataFrame.describe()
         print(dataFrame.describe())
+        print('\n')
+        switch_option() #callling switch function here. 
     
 def option_4(): 
     if (file_type.endswith(".csv")):
@@ -271,6 +293,8 @@ def option_4():
         print('\n')
         dataFrame.isnull().sum()
         print(dataFrame.isnull().sum())
+        print('\n')
+        switch_option() #callling switch function here. 
         
     elif (file_type.endswith(".xlsx")): 
         dataFrame = pd.read_excel(file_type) # reading excel file type here. 
@@ -278,6 +302,8 @@ def option_4():
         print('\n')
         dataFrame.isnull().sum()
         print(dataFrame.isnull().sum())
+        print('\n')
+        switch_option() #callling switch function here. 
         
     elif(file_type.endswith(".xls")): 
         dataFrame = pd.read_excel(file_type) 
@@ -285,22 +311,38 @@ def option_4():
         print('\n')
         dataFrame.isnull().sum()
         print(dataFrame.isnull().sum())
+        print('\n')
+        switch_option() #callling switch function here. 
+
+
+
+#test function for the functionality of switching between sections and wether they want to repeat a section again  
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
+#global variables: 
+#sw means switch option. 
+sw_option1 = "Would you like to stay in Section 1? Please Reply with Yes or No"
+
+
+def switch_option():  
+    while True: 
+        print(sw_option1)
+        get_testing_answer = get_user_speech()# im calling the get_user_speech function. 
+        if (get_testing_answer.lower() == "yes"): 
+            section_1()
+        elif(get_testing_answer.lower() == "no"): 
+            section_2() 
+            break 
+        
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------         
+#here storing the options for cleaning the actual data. 
+
 def section2_option1(): 
     pass 
 
 def section2_option2(): 
-    pass  
-
-def section2_option3(): 
     pass 
-
-def section2_option4(): 
-    pass 
-
-
  
  
  
