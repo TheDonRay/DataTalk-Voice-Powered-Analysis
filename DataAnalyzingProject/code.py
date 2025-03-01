@@ -24,19 +24,22 @@ def ask_user_for_file_type():
     print('\n')
     print(example_file_type)  
     
-    enter_file = input("Please Enter file type")   
+    
     
     #while loop 
-    i = enter_file
-    while (i.strip() == ""): 
-        print("Please Try again and enter file type")
-        enter_file = input("Please Enter file type") 
-        print('\n')
-        if (enter_file.endswith(".csv") or enter_file.endswith(".xlsx") or enter_file.endswith(".xls")): # the endswith function basically is used to check if a string ends with a specified suffix. 
-            break 
+    #i = enter_file
+    while True: 
+        enter_file = input("Please Enter file type")   
+        if (enter_file.strip() == ""): 
+            print("Please Try again and enter file type")
+        elif enter_file.endswith(".csv") or enter_file.endswith(".xlsx") or enter_file.endswith(".xls"):
+            return enter_file
+        else: 
+            print("Invalid file type. Please enter a valid file type.")
         
-    return enter_file 
+        
 
+    
 #calling the ask_user_for_file_type // we are not changing this first part. 
 file_type = ask_user_for_file_type() #now remember we needed to do this to get the file type from the function to get the correct file. 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -102,23 +105,7 @@ def get_user_speech(): #this function just helps
 #calling the get speech function and setting it to the variable get_user_choice_for_section 
 get_user_choice_for_section = get_user_speech() #note that we can make multiple calls to the same function to check something just remember to assign different variables to the function. 
 
-#now we have to create a checker where if section 1 is chosen we go into the options 
-
-def check_first_section(): 
-    if (get_user_choice_for_section == "section one" or get_user_choice_for_section == "section 1" or get_user_choice_for_section == "Section 1" or get_user_choice_for_section == "Section One"): 
-        #were gonna call the other funciton to show the first section 1. 
-        section_1()  #calling the section1 function
-
-def check_second_section(): 
-    if (get_user_choice_for_section == "section two" or get_user_choice_for_section == "section 2" or get_user_choice_for_section == "Section 2" or get_user_choice_for_section == "Section Two"): 
-        section_2()
-
-
-
-#have to call the check_first_section function and check_second_section / these two functions definetely kind of start it off to launch the whole program. 
-check_first_section() 
-check_second_section()
-
+#predefining the sections here for the function. Since it was calling it undefined
 
 def section_1():  
     #going to display content for the general overview of data including mean null values etc. 
@@ -167,9 +154,39 @@ def section_1():
         option_4() 
 
 
+def section_2():  
+    #going to display content for the second part of the data for more of cleaning and manipulating data.  
+    #section 2 is basically the same as section 1 so alot more implementation 
+    Sectiontwo_welcome_text = "Welcome to Section 2. This is where you can clean your data"
+    print(Sectiontwo_welcome_text) 
+    print('\n') 
+    
+    #list of options still have to decide on which options to add  
+    
+    
+    
+    #choose_option_ = get_user_choice_for_section() #calling this function to get the mic for users input notice looks the same but i added _
+ 
+ 
+    #make a list of the valid options for each type given.  
+    
+    
+    
+    #while loop to keep asking user for input  
+    
+    
+    
+    
+    #if statement to check each option in that list index is equal to that in the list. we can seperate it as this [option 1 etc.. ]
+
+
+
     #need to add a checher if theyd like to do any other option for cleaning the data so need to come up with game plan to represent that code in order. 
 
-#functions for first section 1 getting general view of data
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# now we need to define the options for each of the sections to make sure that its good for the options to get called. 
+
 def option_1(): #function to define the operation to get the data. 
     
     
@@ -269,44 +286,39 @@ def option_4():
         dataFrame.isnull().sum()
         print(dataFrame.isnull().sum())
 
-
-def section_2():  
-    #going to display content for the second part of the data for more of cleaning and manipulating data.  
-    #section 2 is basically the same as section 1 so alot more implementation 
-    Sectiontwo_welcome_text = "Welcome to Section 2. This is where you can clean your data"
-    print(Sectiontwo_welcome_text) 
-    print('\n') 
-    
-    #list of options still have to decide on which options to add  
-    
-    
-    
-    #choose_option_ = get_user_choice_for_section() #calling this function to get the mic for users input notice looks the same but i added _
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
- 
-    #make a list of the valid options for each type given.  
-    
-    
-    
-    #while loop to keep asking user for input  
-    
-    
-    
-    
-    #if statement to check each option in that list index is equal to that in the list. we can seperate it as this [option 1 etc.. ]
-
-
-#functions to call the data manipulation. 
 def section2_option1(): 
     pass 
 
 def section2_option2(): 
     pass 
+ 
+ 
+ 
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+#THESE are essentially your callers to call everything. 
+def check_first_section(): 
+    if (get_user_choice_for_section == "section one" or get_user_choice_for_section == "section 1" or get_user_choice_for_section == "Section 1" or get_user_choice_for_section == "Section One"): 
+        #were gonna call the other funciton to show the first section 1. 
+        section_1()  #calling the section1 function
+
+def check_second_section(): 
+    if (get_user_choice_for_section == "section two" or get_user_choice_for_section == "section 2" or get_user_choice_for_section == "Section 2" or get_user_choice_for_section == "Section Two"): 
+        section_2()
+
+#have to call the check_first_section function and check_second_section / these two functions definetely kind of start it off to launch the whole program. 
+check_first_section() #here we are actually calling the sections for them to check 
+check_second_section()
+
+
+    
+
+#functions to call the data manipulation. 
 
 
 
 
 
-
-#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
