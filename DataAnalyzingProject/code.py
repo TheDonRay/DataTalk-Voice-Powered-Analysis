@@ -292,7 +292,15 @@ def section2_option1():
     pass 
 
 def section2_option2(): 
+    pass  
+
+def section2_option3(): 
     pass 
+
+def section2_option4(): 
+    pass 
+
+
  
  
  
