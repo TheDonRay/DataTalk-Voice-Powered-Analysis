@@ -336,7 +336,7 @@ def switch_option():
             break 
         
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------         
-#here storing the options for cleaning the actual data. 
+#here storing the options for cleaning the actual data. This is for section 2. 
 
 def section2_option1(): 
     pass 
