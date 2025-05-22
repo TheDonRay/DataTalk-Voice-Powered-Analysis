@@ -388,10 +388,48 @@ def section2_option1():
     switch_option()
 
 def section2_option2(): 
-    pass 
+    
+    if file_type.endswith(".csv"):
+        dataFrame = pd.read_csv(file_type)
+    elif file_type.endswith(".xlsx") or file_type.endswith(".xls"):
+        dataFrame = pd.read_excel(file_type)
+    else:
+        print("Unsupported file format.")
+        return 
+
+    print("Replacing empty/null values with a default value...\n")
+    
+    default_value = input("Enter a value to replace nulls with (e.g., 0 or 'Unknown'): ")
+    filled_df = dataFrame.fillna(value=default_value)
+    
+    print("Updated DataFrame (first 5 rows):\n")
+    print(filled_df.head())
+    print("\nEmpty values replaced.")
+    switch_option()
 
 def section2_option3(): 
-    pass
+    
+    if file_type.endswith(".csv"):
+        dataFrame = pd.read_csv(file_type)
+    elif file_type.endswith(".xlsx") or file_type.endswith(".xls"):
+        dataFrame = pd.read_excel(file_type)
+    else:
+        print("Unsupported file format.")
+        return
+
+    print("You can update a specific value in a column.")
+    column_name = input("Enter the column name: ")
+    old_value = input("Enter the value to replace: ")
+    new_value = input("Enter the new value: ")
+
+    if column_name not in dataFrame.columns:
+        print(f"Column '{column_name}' not found in dataset.")
+        return
+
+    dataFrame[column_name] = dataFrame[column_name].replace(old_value, new_value)
+    print(f"\nUpdated column '{column_name}' with new values. First 5 rows:\n")
+    print(dataFrame.head())
+    switch_option()
  
  
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -408,12 +446,8 @@ def check_second_section():
 
 #have to call the check_first_section function and check_second_section / these two functions definetely kind of start it off to launch the whole program. 
 check_first_section() #here we are actually calling the sections for them to check 
-check_second_section()
+check_second_section() #calling the function for the checker for the next section type. 
 
-
-    
-
-#functions to call the data manipulation. 
 
 
 
