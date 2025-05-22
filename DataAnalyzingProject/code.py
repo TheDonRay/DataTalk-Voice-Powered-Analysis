@@ -107,6 +107,18 @@ def get_user_speech(): #this function just helps
 #calling the get speech function and setting it to the variable get_user_choice_for_section 
 get_user_choice_for_section = get_user_speech() #note that we can make multiple calls to the same function to check something just remember to assign different variables to the function. 
 
+#need to add a check right after this line to route based on the voice input 
+if get_user_choice_for_section is not None: 
+    choice = get_user_choice_for_section.lower() 
+    if "section one" in choice or "section 1" in choice:
+        section_1()
+    elif "section two" in choice or "section 2" in choice:
+        section_2()
+    else:
+        print("Could not recognize a valid section. Please try again.")
+else:
+    print("No input received. Please restart and try again.") 
+    
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #predefining the sections here for the function. 
@@ -166,26 +178,46 @@ def section_2():
     print('\n') 
     
     #list of options still have to decide on which options to add  
+    option1 = "1.) Remove any Null values present in the data set of given type." 
+    option2 = "2.) Replace empty values with a value to make data more consistent."
+    option3 = "3.) Change specific value in a specific column."
     
-    
+    print(option1 ,'\n', option2, '\n', option3, '\n') 
+    print("Please choose an option !")
     
     #choose_option_ = get_user_choice_for_section() #calling this function to get the mic for users input notice looks the same but i added _
- 
+    choose_option = get_user_speech() 
  
     #make a list of the valid options for each type given.  
+     valid_options = [
+        "Option 1", "option one", "option 1", "Option One", 
+        "Option 2", "option two", "option 2", "Option Two", 
+        "Option 3", "option three", "option 3", "Option Three" 
+        ]
     
     
-    
-    #while loop to keep asking user for input  
-    
-    
-    
-    
-    #if statement to check each option in that list index is equal to that in the list. we can seperate it as this [option 1 etc.. ]
+    # Normalize the input
+    def normalize_input(user_input):
+        return user_input.lower().strip()
 
+    user_choice = normalize_input(choose_option)
 
+    # Re-prompt until valid option is selected
+    while all(user_choice not in opts for opts in valid_options.values()):
+        print("Please choose a valid option!")
+        choose_option = get_user_speech()
+        user_choice = normalize_input(choose_option)
 
-    #need to add a checher if theyd like to do any other option for cleaning the data so need to come up with game plan to represent that code in order. 
+    # Call corresponding section2 function
+    if user_choice in valid_options["option 1"]:
+        print("You have selected Option 1.")
+        section2_option1()
+    elif user_choice in valid_options["option 2"]:
+        print("You have selected Option 2.")
+        section2_option2()
+    elif user_choice in valid_options["option 3"]:
+        print("You have selected Option 3.")
+        section2_option3()
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -339,11 +371,27 @@ def switch_option():
 #here storing the options for cleaning the actual data. This is for section 2. 
 
 def section2_option1(): 
-    pass 
+    
+    if file_type.endswith(".csv"):
+        dataFrame = pd.read_csv(file_type)
+    elif file_type.endswith(".xlsx") or file_type.endswith(".xls"):
+        dataFrame = pd.read_excel(file_type)
+    else:
+        print("Unsupported file format.")
+        return 
+    
+    print("Removing rows with any null values...\n")
+    cleaned_df = dataFrame.dropna()
+    print("Cleaned DataFrame (first 5 rows):\n")
+    print(cleaned_df.head())
+    print("\nNull values removed successfully.")
+    switch_option()
 
 def section2_option2(): 
     pass 
- 
+
+def section2_option3(): 
+    pass
  
  
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
